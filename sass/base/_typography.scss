@@ -2,11 +2,12 @@
 
 :root {
   --primary-font: "Noto Sans", sans-serif;
-  --main-typography-color: #1c2232;
-  --bg-color: #ffffff;
+  --main-typography-color: rgba(1, 1, 42, 1);
+  --bg-header-color: rgba(1, 1, 42, 1);
+  --bg-color: rgba(255, 255, 255, 1);
   --card-bg-color: #f8f9fb;
   --btn-color: #3eb6ff;
-  --btn-text-color: #ffffff;
+  --btn-text-color: rgba(255, 255, 255, 1);
   --checkbox-color: #3eb6ff;
   --placeholder-text: #707070;
 }
