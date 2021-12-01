@@ -12,12 +12,24 @@ body {
 main {
   margin: 0 1rem;
 }
-
+h2 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.form_content {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+}
 @media screen and (min-width: 700px) {
   h1 {
     font-size: 1rem;
   }
   main {
     margin: 0 4rem;
+  }
+  .form_content {
+    margin-top: 4rem;
+    margin-bottom: 5rem;
   }
 }
