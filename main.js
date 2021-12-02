@@ -97,7 +97,14 @@ function prepareObjects(jsonData) {
   console.log("bar", barInfo);
   currentTaps = [];
   document.querySelector(".beer_cards_wrapper").innerHTML = "";
+  let isFoundBefore = {};
   barInfo.taps.forEach((elm) => {
+    console.log(isFoundBefore);
+    // check if the name appeared before
+    if (elm.beer in isFoundBefore) {
+      return;
+    }
+    isFoundBefore[elm.beer] = true;
     const tap = Object.create(Tap);
     tap.id = elm.id;
     tap.name = elm.beer;
@@ -151,7 +158,7 @@ function getLabel(elm) {
 }
 
 function displayBeers() {
-  console.log(currentTaps)
+  console.log(currentTaps);
   currentTaps.forEach((beer) => {
     const clone = document
       .querySelector("template#beers")
@@ -168,6 +175,6 @@ function displayBeers() {
 
     document.querySelector(".beer_cards_wrapper").appendChild(clone);
   });
-  
+
   setEventListeners(currentTaps);
 }

@@ -29,14 +29,17 @@
   grid-template-columns: 2fr 1fr;
 }
 .beer_img {
-  display: flex;
-  justify-content: flex-end;
+  display: grid;
+  justify-content: end;
   padding: 1rem 0.5rem;
+
   img {
     border-radius: 10px;
     height: 80px;
     width: 80px;
     object-fit: cover;
+    z-index: 1;
+    grid-area: 1 / -1;
   }
 }
 .left_side_wrapper {
@@ -48,6 +51,24 @@
 .beer_price {
   font-weight: bold;
 }
+input[type="checkbox"] {
+  width: 40px;
+  height: 40px;
+  background-image: url(/assets/icons/not-checked.svg);
+  background-size: cover;
+  grid-area: 1 / -1;
+  justify-self: end;
+  z-index: 3;
+  margin-top: -1rem;
+  margin-left: 3.5rem;
+}
+input[type="checkbox"]:checked {
+  width: 40px;
+  height: 40px;
+  background-image: url(/assets/icons/check.svg);
+  background-size: cover;
+}
+
 @media screen and (min-width: 700px) {
   .beer_cards_wrapper {
     display: grid;
