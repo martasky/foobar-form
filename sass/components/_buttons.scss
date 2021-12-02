@@ -33,6 +33,11 @@ button {
   gap: 1rem;
 }
 
+.back_circle img{
+  max-width: 30px;
+
+}
+
 @media screen and (min-width: 700px) {
   .back_btn {
     width: 200px;
