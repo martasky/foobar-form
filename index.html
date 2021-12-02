@@ -24,7 +24,7 @@
     </header>
     <main>
       <section class="form_content">
-        <div class="beers-wrapper">
+        <div class="beers-wrapper hidden">
           <h2>Choose your beers</h2>
           <div class="beer_cards_wrapper"></div>
           <button class="main_btn">Proceed now</button>
@@ -60,6 +60,114 @@
             </div>
           </section>
           <template id="checkout"> </template>
+        </div>
+        <div class="payment-wrapper">
+          <h2>Payment details</h2>
+          <form id="payment_form" action="">
+            <div class="payment-details_wrapper">
+              <div class="card_details">
+                <div class="input_group">
+                  <label for="cardholder" class="label-title"
+                    >Cardholder name</label
+                  >
+
+                  <input
+                    type="text"
+                    id="cardholder"
+                    name="cardholder"
+                    placeholder="Jacob Jacobsen"
+                  />
+                </div>
+                <div class="input_group">
+                  <label for="card_number" class="label-title"
+                    >Card number</label
+                  >
+
+                  <input
+                    type="text"
+                    id="card_number"
+                    name="card_number"
+                    placeholder="1234 5678 9012 3456"
+                  />
+                </div>
+                <div class="form_wrapper">
+                  <div class="input_group">
+                    <label for="expiration" class="label-title"
+                      >Expiry date</label
+                    >
+
+                    <input
+                      type="text"
+                      id="expiration"
+                      name="expiration"
+                      placeholder="2023 / 03"
+                    />
+                  </div>
+                  <div class="input_group">
+                    <label for="cardholder" class="label-title">CVW</label>
+
+                    <input
+                      type="text"
+                      id="cardholder"
+                      name="cardholder"
+                      placeholder="098"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="order_details_wrapper">
+                <section id="order_details">
+                  <h3>Your order details</h3>
+                  <div class="order_item">
+                    <div data-order="img">
+                      <img src="/assets/beer-images/row26.png" />
+                    </div>
+                    <div class="order_text_wrapper">
+                      <p data-order="name">Row 26</p>
+                      <p data-order="type">Stout</p>
+                      <p data-order="alc">8.2%</p>
+                    </div>
+                    <p data-order="amount"><span>x</span> 3</p>
+                  </div>
+                  <div class="order_item">
+                    <div data-order="img">
+                      <img src="/assets/beer-images/row26.png" />
+                    </div>
+                    <div class="order_text_wrapper">
+                      <p data-order="name">Row 26</p>
+                      <p data-order="type">Stout</p>
+                      <p data-order="alc">8.2%</p>
+                    </div>
+                    <p data-order="amount"><span>x</span> 3</p>
+                  </div>
+                  <div class="order_item">
+                    <div data-order="img">
+                      <img src="/assets/beer-images/row26.png" />
+                    </div>
+                    <div class="order_text_wrapper">
+                      <p data-order="name">Row 26</p>
+                      <p data-order="type">Stout</p>
+                      <p data-order="alc">8.2%</p>
+                    </div>
+                    <p data-order="amount"><span>x</span> 3</p>
+                  </div>
+                  <hr />
+                  <p data-order="total">500<span> DKK</span></p>
+                </section>
+              </div>
+            </div>
+            <p>Are you ready to enjoy a cold beer?</p>
+            <div class="conditions_wrapper">
+              <input id="accept_terms" type="checkbox" />
+              <label for="accept_terms"
+                >First, you need to accept the terms and conditions.</label
+              >
+            </div>
+            <div id="payment_buttons" class="btn_wrapper">
+              <button class="back_btn">Back</button>
+              <button type="submit" class="next_btn">Pay now</button>
+            </div>
+          </form>
         </div>
       </section>
       <section class="beer_details">
