@@ -27,29 +27,12 @@
         <div class="beers-wrapper">
           <h2>Choose your beers</h2>
           <div class="beer_cards_wrapper"></div>
-          <button class="main_btn">Proceed now</button>
+          <button id="proceed-button" class="main_btn">Proceed now</button>
         </div>
         <div class="checkout-wrapper hidden">
           <h2>My order</h2>
           <section class="checkout_order_wrapper">
-            <div class="beers_ordered">
-              <article class="beer_ordered">
-                <div class="beer_info">
-                  <img src="assets/beer-images/elhefe.png" />
-                  <div>
-                    <h3>El Hefe</h3>
-                    <p class="beer_category">Hefewaizen</p>
-                    <p><span class="alc_percentaje">17</span>%</p>
-                  </div>
-                </div>
-                <div class="quantity_adjuster">
-                  <button class="adjusters remove_beer">-</button>
-                  <p class="beer_amount">1</p>
-                  <button class="adjusters add_beer">+</button>
-                </div>
-                <div><span class="calculated_price">70</span>DKK</div>
-              </article>
-            </div>
+            <div class="beers_ordered"></div>
             <div class="checkout_line"></div>
             <div class="total_price">
               <p>Total: <span></span>DKK</p>
@@ -59,7 +42,24 @@
               <button class="next_btn">Checkout</button>
             </div>
           </section>
-          <template id="checkout"> </template>
+          <template id="checkout">
+            <article class="beer_ordered">
+              <div class="beer_info">
+                <img src="assets/beer-images/elhefe.png" alt=""/>
+                <div>
+                  <h3>El Hefe</h3>
+                  <p class="beer_category">Hefewaizen</p>
+                  <p><span class="alc_percentaje">17</span>%</p>
+                </div>
+              </div>
+              <div class="quantity_adjuster">
+                <button class="adjusters remove_beer">-</button>
+                <p class="beer_amount">1</p>
+                <button class="adjusters add_beer">+</button>
+              </div>
+              <div><span class="calculated_price">70</span>DKK</div>
+            </article></template
+          >
         </div>
       </section>
       <section class="beer_details">
@@ -69,10 +69,7 @@
           </div>
           <article class="details_wrapper">
             <div class="beer_header">
-              <img
-                src="assets/beer-images/elhefe.png"
-                alt="El hefe beer logo"
-              />
+              <img src="assets/beer-images/elhefe.png" alt="El hefe beer logo" />
               <div>
                 <h1>El hefe</h1>
                 <p id="beer_type"></p>
@@ -80,62 +77,39 @@
               </div>
             </div>
             <div class="overall">
-              <p>
-                Refreshing wheat or rye beers that can display more hop
-                character and less yeast character than their German cousins.
-              </p>
+              <p>Refreshing wheat or rye beers that can display more hop character and less yeast character than their German cousins.</p>
             </div>
             <div class="others">
               <div id="aroma" class="other_property">
                 <img src="assets/icons/aroma.svg" />
                 <h2>Aroma</h2>
                 <p>
-                  Low to moderate grainy wheat or rye character. Some malty
-                  sweetness is acceptable. Esters can be moderate to none,
-                  although should reflect American yeast strains. The clove and
-                  banana aromas common to German hefeweizens are inappropriate.
-                  Hop aroma may be low to moderate, and can have either a
-                  citrusy American or a spicy or floral noble hop character.
-                  Slight crisp sharpness is optional. No diacetyl
+                  Low to moderate grainy wheat or rye character. Some malty sweetness is acceptable. Esters can be moderate to none, although should reflect American yeast strains. The clove and banana aromas common to German hefeweizens are
+                  inappropriate. Hop aroma may be low to moderate, and can have either a citrusy American or a spicy or floral noble hop character. Slight crisp sharpness is optional. No diacetyl
                 </p>
               </div>
               <div id="appearance" class="other_property">
                 <img src="assets/icons/appearence.svg" />
                 <h2>Appearance</h2>
                 <p>
-                  Low to moderate grainy wheat or rye character. Some malty
-                  sweetness is acceptable. Esters can be moderate to none,
-                  although should reflect American yeast strains. The clove and
-                  banana aromas common to German hefeweizens are inappropriate.
-                  Hop aroma may be low to moderate, and can have either a
-                  citrusy American or a spicy or floral noble hop character.
-                  Slight crisp sharpness is optional. No diacetyl
+                  Low to moderate grainy wheat or rye character. Some malty sweetness is acceptable. Esters can be moderate to none, although should reflect American yeast strains. The clove and banana aromas common to German hefeweizens are
+                  inappropriate. Hop aroma may be low to moderate, and can have either a citrusy American or a spicy or floral noble hop character. Slight crisp sharpness is optional. No diacetyl
                 </p>
               </div>
               <div id="flavour" class="other_property">
                 <img src="assets/icons/flavour.svg" />
                 <h2>Flavour</h2>
                 <p>
-                  Low to moderate grainy wheat or rye character. Some malty
-                  sweetness is acceptable. Esters can be moderate to none,
-                  although should reflect American yeast strains. The clove and
-                  banana aromas common to German hefeweizens are inappropriate.
-                  Hop aroma may be low to moderate, and can have either a
-                  citrusy American or a spicy or floral noble hop character.
-                  Slight crisp sharpness is optional. No diacetyl
+                  Low to moderate grainy wheat or rye character. Some malty sweetness is acceptable. Esters can be moderate to none, although should reflect American yeast strains. The clove and banana aromas common to German hefeweizens are
+                  inappropriate. Hop aroma may be low to moderate, and can have either a citrusy American or a spicy or floral noble hop character. Slight crisp sharpness is optional. No diacetyl
                 </p>
               </div>
               <div id="mouthfeel" class="other_property">
                 <img src="assets/icons/mouth-feel.svg" />
                 <h2>Mouthfeel</h2>
                 <p>
-                  Low to moderate grainy wheat or rye character. Some malty
-                  sweetness is acceptable. Esters can be moderate to none,
-                  although should reflect American yeast strains. The clove and
-                  banana aromas common to German hefeweizens are inappropriate.
-                  Hop aroma may be low to moderate, and can have either a
-                  citrusy American or a spicy or floral noble hop character.
-                  Slight crisp sharpness is optional. No diacetyl
+                  Low to moderate grainy wheat or rye character. Some malty sweetness is acceptable. Esters can be moderate to none, although should reflect American yeast strains. The clove and banana aromas common to German hefeweizens are
+                  inappropriate. Hop aroma may be low to moderate, and can have either a citrusy American or a spicy or floral noble hop character. Slight crisp sharpness is optional. No diacetyl
                 </p>
               </div>
             </div>
