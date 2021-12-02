@@ -13,24 +13,18 @@ export function moreInfo(id, beer) {
   document.querySelector(".beers-wrapper").classList.add("hide");
 
   //add event listener
-  document
-    .querySelector(".back_circle")
-    .addEventListener("click", closeMoreInfo);
+  document.querySelector(".back_circle").addEventListener("click", closeMoreInfo);
+
 
   //populate pop up
   document.querySelector(".beer_header img").src = beer.label;
-  document.querySelector(
-    ".beer_header img"
-  ).alt = `Logo of the beer ${beer.name}`;
-  document.querySelector(".beer_header div h1").innerHTML = beer.name;
-  document.querySelector(".beer_type").innerHTML = beer.category;
-  document.querySelector(".alcohol").innerHTML = beer.alc;
-  document.querySelector(".overall").textContent =
-    beer.description.overallImpression;
+  document.querySelector(".beer_header img").alt = `Logo of the beer ${beer.name}`;
+  document.querySelector(".beer_header div h1").textContent = beer.name;
+  document.querySelector("#beer_type").textContent = beer.category;
+  document.querySelector(".alcohol span").textContent = beer.alc;
+  document.querySelector(".overall").textContent = beer.description.overallImpression;
   document.querySelector("#aroma p").textContent = beer.description.aroma;
-  document.querySelector("#appearance p").textContent =
-    beer.description.appearance;
+  document.querySelector("#appearance p").textContent = beer.description.appearance;
   document.querySelector("#flavour p").textContent = beer.description.flavor;
-  document.querySelector("#mouthfeel p").textContent =
-    beer.description.mouthfeel;
+  document.querySelector("#mouthfeel p").textContent = beer.description.mouthfeel;
 }

@@ -151,6 +151,7 @@ function getLabel(elm) {
 }
 
 function displayBeers() {
+  console.log(currentTaps)
   currentTaps.forEach((beer) => {
     const clone = document
       .querySelector("template#beers")
@@ -167,5 +168,6 @@ function displayBeers() {
 
     document.querySelector(".beer_cards_wrapper").appendChild(clone);
   });
+  
   setEventListeners(currentTaps);
 }
