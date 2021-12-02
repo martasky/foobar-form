@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>FooBar order form</title>
   </head>
   <body>
     <header>
@@ -28,6 +28,38 @@
           <h2>Choose your beers</h2>
           <div class="beer_cards_wrapper"></div>
           <button class="main_btn">Proceed now</button>
+        </div>
+        <div class="checkout-wrapper hidden">
+          <h2>My order</h2>
+          <section class="checkout_order_wrapper">
+            <div class="beers_ordered">
+              <article class="beer_ordered">
+                <div class="beer_info">
+                  <img src="assets/beer-images/elhefe.png" />
+                  <div>
+                    <h3>El Hefe</h3>
+                    <p class="beer_category">Hefewaizen</p>
+                    <p><span class="alc_percentaje">17</span>%</p>
+                  </div>
+                </div>
+                <div class="quantity_adjuster">
+                  <button class="adjusters remove_beer">-</button>
+                  <p class="beer_amount">1</p>
+                  <button class="adjusters add_beer">+</button>
+                </div>
+                <div><span class="calculated_price">70</span>DKK</div>
+              </article>
+            </div>
+            <div class="checkout_line"></div>
+            <div class="total_price">
+              <p>Total: <span></span>DKK</p>
+            </div>
+            <div id="checkout_buttons" class="btn_wrapper">
+              <button class="back_btn">Back</button>
+              <button class="next_btn">Checkout</button>
+            </div>
+          </section>
+          <template id="checkout"> </template>
         </div>
       </section>
       <section class="beer_details">
@@ -110,11 +142,6 @@
           </article>
         </div>
       </section>
-
-      <div class="btn_wrapper">
-        <button class="back_btn">Back</button>
-        <button class="next_btn">Checkout</button>
-      </div>
     </main>
     <footer></footer>
     <template id="beers">
