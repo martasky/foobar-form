@@ -7,6 +7,49 @@
     <title>Vite App</title>
   </head>
   <body>
+    <header>
+      <div class="logo">FooBar</div>
+      <section class="top_menu">
+        <section class="menucardwrapper">
+          <div class="menucard" id="time">
+            <h1>Time until closure</h1>
+            <p id="remaining_time">2:00</p>
+          </div>
+          <div class="menucard" id="people">
+            <h1>People in queue</h1>
+            <p id="people_queue">13</p>
+          </div>
+        </section>
+      </section>
+    </header>
+    <main>
+      <section class="form_content">
+        <div class="beers-wrapper">
+          <h2>Choose your beers</h2>
+          <div class="beer_cards_wrapper">
+            <div class="beer_card">
+              <div class="left_side_wrapper">
+                <p class="beer_name">El Hefe</p>
+                <p class="beer_type">
+                  Hefeweizen <span class="beer_alkohol">8,7%</span>
+                </p>
+                <p class="beer_price">40kr</p>
+                <button class="read_more">Read more</button>
+              </div>
+              <div class="beer_img">
+                <img src="assets/beer-images/elhefe.png" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <button class="main_btn">Proceed now</button>
+      <div class="btn_wrapper">
+        <button class="back_btn">Back</button>
+        <button class="next_btn">Checkout</button>
+      </div>
+    </main>
+    <footer></footer>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
