@@ -1,4 +1,5 @@
 import "./sass/style.scss";
+import {setEventListeners} from './modules/event-listeners.js'
 
 window.addEventListener("DOMContentLoaded", start);
 
@@ -16,6 +17,7 @@ const Beer = {
 
 function start() {
   loadJSON();
+
 }
 
 function loadJSON() {
@@ -36,7 +38,7 @@ function prepareObjects(jsonData) {
     let beerPrice = getBeerPrice(elm);
     // setting properties in the new object to that values
     beer.name = elm.name;
-    beer.cateogry = elm.category;
+    beer.category = elm.category;
     beer.alc = elm.alc;
     beer.price = beerPrice;
     beer.label = elm.label;
@@ -80,6 +82,10 @@ function displayBeers() {
       .content.cloneNode(true);
 
     clone.querySelector(".beer_name").textContent = beer.name;
+    clone.querySelector(".read_more").setAttribute('id', `${beer.name.replaceAll(" ", "-")}`)
     document.querySelector(".beer_cards_wrapper").appendChild(clone);
+    
   });
+  setEventListeners(allBeers)
+  
 }
