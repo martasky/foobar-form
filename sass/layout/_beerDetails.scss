@@ -7,11 +7,8 @@
 .show {
     display:block;
     background-color: white;;
-    position: absolute;
-    width: 100vw;
     padding-bottom: 20vh; 
-    top: 45vh;
-    left: 0;}
+  }
 
 .hide {
     display:none;
@@ -81,39 +78,4 @@
     grid-row: 2;
   }
   
-  @media (min-width: 350px) and (min-height: 600px){
-    .show {
-      top: 35vh;
-      }  
-  }
-
-  @media (min-width: 375px){
-    .show {
-      top: 35vh;
-      }  
-  }
   
-
-  @media (min-width: 375px) and (min-height: 810px){
-    .show {
-      top: 30vh;
-      }  
-  }
-
-  @media (min-width: 700px) and (orientation: portrait) {
-    .show {
-        top: 25vh;
-        }  
-  }
-
-  @media (min-width: 900px) and (orientation: portrait) {
-    .show {
-        top: 20vh;
-      }  
-  }
-
-  @media (min-width: 900px) and (orientation: landscape) {
-    .show {
-        top: 45vh;
-      }  
-  }
