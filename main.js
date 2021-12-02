@@ -1,14 +1,27 @@
 import "./sass/style.scss";
-import {setEventListeners} from './modules/event-listeners.js'
+import { setEventListeners } from "./modules/event-listeners.js";
 
 window.addEventListener("DOMContentLoaded", start);
 
 let allBeers = [];
+let barInfo = [];
+let currentTaps = [];
+
 console.log(allBeers);
 
 const Beer = {
   name: "",
-  cateogry: "",
+  category: "",
+  alc: "",
+  price: "",
+  label: "",
+  description: "",
+};
+
+const Tap = {
+  id: "",
+  name: "",
+  category: "",
   alc: "",
   price: "",
   label: "",
@@ -16,19 +29,50 @@ const Beer = {
 };
 
 function start() {
-  loadJSON();
-
+  getJSONfiles();
+  setInterval(updateQueue, 5000);
+  updateQueue();
 }
 
-function loadJSON() {
+function getJSONfiles() {
   let urlBeers = "https://foo-bar-project.herokuapp.com/beertypes";
-  fetch(urlBeers)
+  let urlBar = "https://foo-bar-project.herokuapp.com/";
+  function loadJSON() {
+    fetch(urlBeers)
+      .then((response) => response.json())
+      .then((jsonData) => {
+        prepareObjects(jsonData);
+      });
+  }
+
+  fetch(urlBar)
     .then((response) => response.json())
     .then((jsonData) => {
-      prepareObjects(jsonData);
+      barInfo = jsonData;
+      loadJSON();
     });
 }
 
+function updateQueue() {
+  let urlBar = "https://foo-bar-project.herokuapp.com/";
+
+  fetch(urlBar)
+    .then((response) => response.json())
+    .then((jsonData) => {
+      prepareMenuData(jsonData);
+    });
+}
+
+function prepareMenuData(jsonData) {
+  console.log(jsonData);
+  let queue = jsonData.queue.length;
+  console.log("queueu", queue);
+
+  displayMenu(queue);
+}
+function displayMenu(queue) {
+  document.querySelector("#people_queue").textContent = queue;
+}
 function prepareObjects(jsonData) {
   //modify json here
   jsonData.forEach((elm) => {
@@ -36,16 +80,41 @@ function prepareObjects(jsonData) {
 
     // add price to each beer
     let beerPrice = getBeerPrice(elm);
+
+    // get label url
+
+    let label = getLabel(elm);
     // setting properties in the new object to that values
     beer.name = elm.name;
     beer.category = elm.category;
     beer.alc = elm.alc;
     beer.price = beerPrice;
-    beer.label = elm.label;
+    beer.label = label;
     beer.description = elm.description;
     allBeers.push(beer);
   });
 
+  console.log("bar", barInfo);
+  currentTaps = [];
+  document.querySelector(".beer_cards_wrapper").innerHTML = "";
+  barInfo.taps.forEach((elm) => {
+    const tap = Object.create(Tap);
+    tap.id = elm.id;
+    tap.name = elm.beer;
+    allBeers.forEach((beer) => {
+      // if the name in allBeers array is the name as in tap obj,
+      //then loop through all the keys in all beers obj,
+      //and copy it to the new object
+      if (beer.name == tap.name) {
+        for (let key in beer) {
+          tap[key] = beer[key];
+        }
+      }
+    });
+
+    currentTaps.push(tap);
+  });
+  console.log("taps", currentTaps);
   displayBeers();
 }
 
@@ -75,17 +144,28 @@ function getBeerPrice(elm) {
   }
   return price;
 }
+function getLabel(elm) {
+  let label = elm.label;
+  let imgUrl = "/assets/beer-images/" + label;
+  return imgUrl;
+}
+
 function displayBeers() {
-  allBeers.forEach((beer) => {
+  currentTaps.forEach((beer) => {
     const clone = document
       .querySelector("template#beers")
       .content.cloneNode(true);
 
     clone.querySelector(".beer_name").textContent = beer.name;
-    clone.querySelector(".read_more").setAttribute('id', `${beer.name.replaceAll(" ", "-")}`)
+    clone
+      .querySelector(".read_more")
+      .setAttribute("id", `${beer.name.replaceAll(" ", "-")}`);
+    clone.querySelector(".beer_type_name").textContent = `${beer.category},`;
+    clone.querySelector(".beer_alkohol").textContent = `${beer.alc}%`;
+    clone.querySelector(".beer_price").textContent = `${beer.price} kr`;
+    clone.querySelector(".beer_img img").src = beer.label;
+
     document.querySelector(".beer_cards_wrapper").appendChild(clone);
-    
   });
-  setEventListeners(allBeers)
-  
+  setEventListeners(currentTaps);
 }

@@ -7,7 +7,7 @@
   border-radius: initial;
   padding: initial;
   font-family: var(--primary-font);
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: var(--main-typography-color);
   text-decoration: underline;
   box-shadow: none;
@@ -16,7 +16,10 @@
   cursor: pointer;
   margin-top: 1rem;
 }
-
+.beer_cards_wrapper {
+  display: grid;
+  gap: 1rem;
+}
 .beer_card {
   background-color: var(--card-bg-color);
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
@@ -44,4 +47,11 @@
 .beer_name,
 .beer_price {
   font-weight: bold;
+}
+@media screen and (min-width: 700px) {
+  .beer_cards_wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
 }
