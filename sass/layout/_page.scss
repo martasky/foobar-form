@@ -21,6 +21,15 @@ h2 {
   margin-top: 2rem;
   margin-bottom: 3rem;
 }
+
+.hidden {
+  display:none
+}
+
+.visible{
+  display:contents
+}
+
 @media screen and (min-width: 700px) {
   h1 {
     font-size: 1rem;

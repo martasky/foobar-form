@@ -45,3 +45,26 @@ button {
 .back_circle img {
   max-width: 30px;
 }
+
+
+.adjusters{
+  background-color: var(--card-bg-color);
+  color:var(--main-typography-color);
+  font-size: 1.2em;
+  padding: 0.1em 0.5em;
+}
+
+.quantity_adjuster{
+  display:flex;
+  align-items:center;
+  gap:0.5em
+}
+
+@media screen and (min-width: 500px) {
+  .adjusters{
+    padding: 0.3em 0.7em
+  }
+  .quantity_adjuster{
+    gap: 1em;
+  }
+}

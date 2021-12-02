@@ -1,1 +1,39 @@
 @use "../base/typography";
+
+.beer_ordered{
+    display:flex;
+    gap:1em;
+    align-items: flex-end;
+    justify-content:space-between;
+}
+.checkout_order_wrapper{
+    display:grid;
+    grid-gap:1em;
+}
+.checkout_order_wrapper img{
+ max-width: 60px;
+ border-radius: 13px;
+}
+
+.beer_info{
+    display:grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr;
+    grid-gap: 1em;
+}
+
+.checkout_line{
+    height: 0.2em;
+    width: 100%;
+    background: var(--main-typography-color);
+    border-radius: 13px;
+}
+
+.total_price{
+    display:flex;
+    justify-content: flex-end;
+}
+
+#checkout_buttons{
+    margin-top: 20vh
+}
