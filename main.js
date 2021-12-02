@@ -2,6 +2,18 @@ import "./sass/style.scss";
 
 window.addEventListener("DOMContentLoaded", start);
 
+let allBeers = [];
+console.log(allBeers);
+
+const Beer = {
+  name: "",
+  cateogry: "",
+  alc: "",
+  price: "",
+  label: "",
+  description: "",
+};
+
 function start() {
   loadJSON();
 }
@@ -18,11 +30,56 @@ function loadJSON() {
 function prepareObjects(jsonData) {
   //modify json here
   jsonData.forEach((elm) => {
-    console.log(elm);
-    // I thought we will create object like in hogwarts to add beer prices and push the new objects in a global array
+    const beer = Object.create(Beer);
+
+    // add price to each beer
+    let beerPrice = getBeerPrice(elm);
+    // setting properties in the new object to that values
+    beer.name = elm.name;
+    beer.cateogry = elm.category;
+    beer.alc = elm.alc;
+    beer.price = beerPrice;
+    beer.label = elm.label;
+    beer.description = elm.description;
+    allBeers.push(beer);
   });
 
-  displayBeer();
+  displayBeers();
 }
 
-function displayBeer() {}
+function getBeerPrice(elm) {
+  let name = elm.name;
+  let price = "";
+  if (name == "El Hefe") {
+    price = 40;
+  } else if (name == "Fairy Tale Ale") {
+    price = 60;
+  } else if (name == "GitHop") {
+    price = 60;
+  } else if (name == "Hollaback Lager") {
+    price = 50;
+  } else if (name == "Hoppily Ever After") {
+    price = 65;
+  } else if (name == "Mowintime") {
+    price = 30;
+  } else if (name == "Row 26") {
+    price = 80;
+  } else if (name == "Ruined Childhood") {
+    price = 70;
+  } else if (name == "Sleighride") {
+    price = 70;
+  } else {
+    price = 50;
+  }
+  return price;
+}
+function displayBeers() {
+  allBeers.forEach((beer) => {
+    const clone = document
+      .querySelector("template#beers")
+      .content.cloneNode(true);
+
+    clone.querySelector(".beer_name").textContent = beer.name;
+    document.querySelector(".beer_cards_wrapper").appendChild(clone);
+  });
+}

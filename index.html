@@ -26,21 +26,7 @@
       <section class="form_content">
         <div class="beers-wrapper">
           <h2>Choose your beers</h2>
-          <div class="beer_cards_wrapper">
-            <div class="beer_card">
-              <div class="left_side_wrapper">
-                <p class="beer_name">El Hefe</p>
-                <p class="beer_type">
-                  Hefeweizen <span class="beer_alkohol">8,7%</span>
-                </p>
-                <p class="beer_price">40kr</p>
-                <button class="read_more">Read more</button>
-              </div>
-              <div class="beer_img">
-                <img src="assets/beer-images/elhefe.png" />
-              </div>
-            </div>
-          </div>
+          <div class="beer_cards_wrapper"></div>
         </div>
       </section>
       <button class="main_btn">Proceed now</button>
@@ -50,6 +36,21 @@
       </div>
     </main>
     <footer></footer>
+    <template id="beers">
+      <div class="beer_card">
+        <div class="left_side_wrapper">
+          <p class="beer_name">El Hefe</p>
+          <p class="beer_type">
+            Hefeweizen <span class="beer_alkohol">8,7%</span>
+          </p>
+          <p class="beer_price">40kr</p>
+          <button class="read_more">Read more</button>
+        </div>
+        <div class="beer_img">
+          <img src="assets/beer-images/elhefe.png" />
+        </div>
+      </div>
+    </template>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
