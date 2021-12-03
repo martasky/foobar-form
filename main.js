@@ -70,7 +70,7 @@ function prepareMenuData(jsonData) {
   let queue = jsonData.queue.length;
 
   displayMenu(queue, timestamp);
-  displayOrderNumbers(jsonData.serving)
+ 
 }
 function displayMenu(queue, timestamp) {
   document.querySelector("#people_queue").textContent = queue;
@@ -101,7 +101,6 @@ function prepareObjects(jsonData) {
   document.querySelector(".beer_cards_wrapper").innerHTML = "";
   let isFoundBefore = {};
   barInfo.taps.forEach((elm) => {
-    console.log(isFoundBefore);
     // check if the name appeared before
     if (elm.beer in isFoundBefore) {
       return;
@@ -182,5 +181,5 @@ function displayBeers() {
     document.querySelector(".beer_cards_wrapper").appendChild(clone);
   });
 
-  setEventListeners(currentTaps);
+  setEventListeners(currentTaps, barInfo);
 }

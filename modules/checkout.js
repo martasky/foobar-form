@@ -3,7 +3,7 @@ import { calculateTotalPrice } from "./checkout-price";
 import { addBeer } from "./add-beer";
 import { goToPayment } from "./payment";
 
-export function goToCheckOut(allBeers) {
+export function goToCheckOut(allBeers, barInfo) {
   let selectedBeers = [];
 
   /*
@@ -38,18 +38,14 @@ export function goToCheckOut(allBeers) {
     // add amount property for each object
     beer.amount = 1;
 
-    const copy = document
-      .querySelector("template#checkout")
-      .content.cloneNode(true);
+    const copy = document.querySelector("template#checkout").content.cloneNode(true);
     let beerid = beer.name.replaceAll(" ", "-");
     copy.querySelector("img").src = beer.label;
     copy.querySelector("h3").textContent = beer.name;
     copy.querySelector(".beer_category").textContent = beer.category;
     copy.querySelector(".alc_percentaje").textContent = beer.alc;
     copy.querySelector(".calculated_price").textContent = beer.price;
-    copy
-      .querySelector(".calculated_price")
-      .setAttribute("id", `price-${beerid}`);
+    copy.querySelector(".calculated_price").setAttribute("id", `price-${beerid}`);
     copy.querySelector(".remove_beer").setAttribute("id", `remove-${beerid}`);
     copy.querySelector(".add_beer").setAttribute("id", `add-${beerid}`);
     copy.querySelector(".beer_amount").setAttribute("id", `amount-${beerid}`);
@@ -75,7 +71,6 @@ export function goToCheckOut(allBeers) {
 
   // if you proceed send the selectedBeers array
   document.querySelector("#checkout_next").addEventListener("click", () => {
-    console.log("next");
     document.querySelector(".checkout-wrapper").classList.add("hidden");
     //loop throught the added beers, build an object with info and push it to the array selectedBeersAmount
     //document.querySelector("").classList.remove("hidden");
@@ -94,7 +89,7 @@ export function goToCheckOut(allBeers) {
     selectedBeersAmount = [];
   });
 
-  document.querySelector("#checkout_next").addEventListener("click", () => {
-    goToPayment(allBeers, selectedBeers);
+  document.querySelector("#checkout_next").addEventListener("click", () => {    
+    goToPayment( barInfo, selectedBeers);
   });
 }
