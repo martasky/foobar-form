@@ -57,8 +57,11 @@
                 <p class="beer_amount">1</p>
                 <button class="adjusters add_beer">+</button>
               </div>
-              <div><p><span class="calculated_price">70</span>DKK</p></div>
-            </article></template>
+              <div>
+                <p><span class="calculated_price">70</span>DKK</p>
+              </div>
+            </article></template
+          >
         </div>
         <div class="payment-wrapper hidden">
           <h2>Payment details</h2>
@@ -75,6 +78,7 @@
                     id="cardholder"
                     name="cardholder"
                     placeholder="Jacob Jacobsen"
+                    required
                   />
                 </div>
                 <div class="input_group">
@@ -87,6 +91,10 @@
                     id="card_number"
                     name="card_number"
                     placeholder="1234 5678 9012 3456"
+                    maxlength="16"
+                    minlength="16"
+                    inputmode="numeric"
+                    required
                   />
                 </div>
                 <div class="form_wrapper">
@@ -100,6 +108,10 @@
                       id="expiration"
                       name="expiration"
                       placeholder="2023 / 03"
+                      maxlength="7"
+                      minlength="7"
+                      inputmode="numeric"
+                      required
                     />
                   </div>
                   <div class="input_group">
@@ -110,6 +122,10 @@
                       id="cardholder"
                       name="cardholder"
                       placeholder="098"
+                      maxlength="3"
+                      minlength="3"
+                      inputmode="numeric"
+                      required
                     />
                   </div>
                 </div>
@@ -117,39 +133,21 @@
               <div class="order_details_wrapper">
                 <section id="order_details">
                   <h3>Your order details</h3>
-                  <div class="order_item">
-                    <div data-order="img">
-                      <img src="/assets/beer-images/row26.png" />
+                  <div id="orders-list"></div>
+                  <template id="payment">
+                    <div class="order_item">
+                      <div data-order="img">
+                        <img src="/assets/beer-images/row26.png" />
+                      </div>
+                      <div class="order_text_wrapper">
+                        <p data-order="name">Row 26</p>
+                        <p data-order="type">Stout</p>
+                        <p data-order="alc">8.2%</p>
+                      </div>
+                      <p data-order="amount"><span>x</span> 3</p>
                     </div>
-                    <div class="order_text_wrapper">
-                      <p data-order="name">Row 26</p>
-                      <p data-order="type">Stout</p>
-                      <p data-order="alc">8.2%</p>
-                    </div>
-                    <p data-order="amount"><span>x</span> 3</p>
-                  </div>
-                  <div class="order_item">
-                    <div data-order="img">
-                      <img src="/assets/beer-images/row26.png" />
-                    </div>
-                    <div class="order_text_wrapper">
-                      <p data-order="name">Row 26</p>
-                      <p data-order="type">Stout</p>
-                      <p data-order="alc">8.2%</p>
-                    </div>
-                    <p data-order="amount"><span>x</span> 3</p>
-                  </div>
-                  <div class="order_item">
-                    <div data-order="img">
-                      <img src="/assets/beer-images/row26.png" />
-                    </div>
-                    <div class="order_text_wrapper">
-                      <p data-order="name">Row 26</p>
-                      <p data-order="type">Stout</p>
-                      <p data-order="alc">8.2%</p>
-                    </div>
-                    <p data-order="amount"><span>x</span> 3</p>
-                  </div>
+                  </template>
+
                   <hr />
                   <p data-order="total">500<span> DKK</span></p>
                 </section>
@@ -157,13 +155,15 @@
             </div>
             <p>Are you ready to enjoy a cold beer?</p>
             <div class="conditions_wrapper">
-              <input id="accept_terms" type="checkbox" />
+              <input id="accept_terms" type="checkbox" required />
               <label for="accept_terms"
                 >First, you need to accept the terms and conditions.</label
               >
             </div>
             <div id="payment_buttons" class="btn_wrapper">
-              <button class="back_btn">Back</button>
+              <button type="button" id="payment_back" class="back_btn">
+                Back
+              </button>
               <button type="submit" class="next_btn">Pay now</button>
             </div>
           </form>
@@ -176,7 +176,10 @@
           </div>
           <article class="details_wrapper">
             <div class="beer_header">
-              <img src="assets/beer-images/elhefe.png" alt="El hefe beer logo" />
+              <img
+                src="assets/beer-images/elhefe.png"
+                alt="El hefe beer logo"
+              />
               <div>
                 <h1>El hefe</h1>
                 <p id="beer_type"></p>
@@ -184,39 +187,62 @@
               </div>
             </div>
             <div class="overall">
-              <p>Refreshing wheat or rye beers that can display more hop character and less yeast character than their German cousins.</p>
+              <p>
+                Refreshing wheat or rye beers that can display more hop
+                character and less yeast character than their German cousins.
+              </p>
             </div>
             <div class="others">
               <div id="aroma" class="other_property">
                 <img src="assets/icons/aroma.svg" />
                 <h2>Aroma</h2>
                 <p>
-                  Low to moderate grainy wheat or rye character. Some malty sweetness is acceptable. Esters can be moderate to none, although should reflect American yeast strains. The clove and banana aromas common to German hefeweizens are
-                  inappropriate. Hop aroma may be low to moderate, and can have either a citrusy American or a spicy or floral noble hop character. Slight crisp sharpness is optional. No diacetyl
+                  Low to moderate grainy wheat or rye character. Some malty
+                  sweetness is acceptable. Esters can be moderate to none,
+                  although should reflect American yeast strains. The clove and
+                  banana aromas common to German hefeweizens are inappropriate.
+                  Hop aroma may be low to moderate, and can have either a
+                  citrusy American or a spicy or floral noble hop character.
+                  Slight crisp sharpness is optional. No diacetyl
                 </p>
               </div>
               <div id="appearance" class="other_property">
                 <img src="assets/icons/appearence.svg" />
                 <h2>Appearance</h2>
                 <p>
-                  Low to moderate grainy wheat or rye character. Some malty sweetness is acceptable. Esters can be moderate to none, although should reflect American yeast strains. The clove and banana aromas common to German hefeweizens are
-                  inappropriate. Hop aroma may be low to moderate, and can have either a citrusy American or a spicy or floral noble hop character. Slight crisp sharpness is optional. No diacetyl
+                  Low to moderate grainy wheat or rye character. Some malty
+                  sweetness is acceptable. Esters can be moderate to none,
+                  although should reflect American yeast strains. The clove and
+                  banana aromas common to German hefeweizens are inappropriate.
+                  Hop aroma may be low to moderate, and can have either a
+                  citrusy American or a spicy or floral noble hop character.
+                  Slight crisp sharpness is optional. No diacetyl
                 </p>
               </div>
               <div id="flavour" class="other_property">
                 <img src="assets/icons/flavour.svg" />
                 <h2>Flavour</h2>
                 <p>
-                  Low to moderate grainy wheat or rye character. Some malty sweetness is acceptable. Esters can be moderate to none, although should reflect American yeast strains. The clove and banana aromas common to German hefeweizens are
-                  inappropriate. Hop aroma may be low to moderate, and can have either a citrusy American or a spicy or floral noble hop character. Slight crisp sharpness is optional. No diacetyl
+                  Low to moderate grainy wheat or rye character. Some malty
+                  sweetness is acceptable. Esters can be moderate to none,
+                  although should reflect American yeast strains. The clove and
+                  banana aromas common to German hefeweizens are inappropriate.
+                  Hop aroma may be low to moderate, and can have either a
+                  citrusy American or a spicy or floral noble hop character.
+                  Slight crisp sharpness is optional. No diacetyl
                 </p>
               </div>
               <div id="mouthfeel" class="other_property">
                 <img src="assets/icons/mouth-feel.svg" />
                 <h2>Mouthfeel</h2>
                 <p>
-                  Low to moderate grainy wheat or rye character. Some malty sweetness is acceptable. Esters can be moderate to none, although should reflect American yeast strains. The clove and banana aromas common to German hefeweizens are
-                  inappropriate. Hop aroma may be low to moderate, and can have either a citrusy American or a spicy or floral noble hop character. Slight crisp sharpness is optional. No diacetyl
+                  Low to moderate grainy wheat or rye character. Some malty
+                  sweetness is acceptable. Esters can be moderate to none,
+                  although should reflect American yeast strains. The clove and
+                  banana aromas common to German hefeweizens are inappropriate.
+                  Hop aroma may be low to moderate, and can have either a
+                  citrusy American or a spicy or floral noble hop character.
+                  Slight crisp sharpness is optional. No diacetyl
                 </p>
               </div>
             </div>

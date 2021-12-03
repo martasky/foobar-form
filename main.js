@@ -160,16 +160,22 @@ function getLabel(elm) {
 function displayBeers() {
   console.log(currentTaps);
   currentTaps.forEach((beer) => {
-    const clone = document.querySelector("template#beers").content.cloneNode(true);
-    const chosenBeer = beer.name.replaceAll(" ", "-")
+    const clone = document
+      .querySelector("template#beers")
+      .content.cloneNode(true);
+    const chosenBeer = beer.name.replaceAll(" ", "-");
 
     clone.querySelector(".beer_name").textContent = beer.name;
-    clone.querySelector(".read_more").setAttribute("id", `${beer.name.replaceAll(" ", "-")}`);
+    clone
+      .querySelector(".read_more")
+      .setAttribute("id", `${beer.name.replaceAll(" ", "-")}`);
     clone.querySelector(".beer_type_name").textContent = `${beer.category},`;
     clone.querySelector(".beer_alkohol").textContent = `${beer.alc}%`;
     clone.querySelector(".beer_price").textContent = `${beer.price} kr`;
     clone.querySelector(".beer_img img").src = beer.label;
-    clone.querySelector('input[type="checkbox"').setAttribute("id", `${chosenBeer}-chosen`)
+    clone
+      .querySelector('input[type="checkbox"')
+      .setAttribute("id", `${chosenBeer}-chosen`);
 
     document.querySelector(".beer_cards_wrapper").appendChild(clone);
   });
