@@ -3,15 +3,10 @@ import { calculateTotalPrice } from "./checkout-price";
 import { addBeer } from "./add-beer";
 import { goToPayment } from "./payment";
 
+let isDisplayedBefore = {};
+
 export function goToCheckOut(allBeers) {
   let selectedBeers = [];
-
-  /*
-  selectedBeers.forEach((e) => {
-    for (let key in e) {
-      e[key] = "amount";
-    }
-  }); */
 
   let selectedBeersAmount = [];
 
@@ -35,9 +30,17 @@ export function goToCheckOut(allBeers) {
   });
 
   selectedBeers.forEach((beer) => {
+    console.log("selected beers in chceckout", selectedBeers);
+    console.log("isdisplayedbifre what cintains", isDisplayedBefore);
     // add amount property for each object
-    beer.amount = 1;
 
+    console.log("displayebdefoe", beer.name);
+    if (beer.name in isDisplayedBefore) {
+      return;
+    }
+    isDisplayedBefore[beer.name] = true;
+    beer.amount = 1;
+    console.log("is it added", selectedBeers);
     const copy = document
       .querySelector("template#checkout")
       .content.cloneNode(true);
@@ -53,25 +56,21 @@ export function goToCheckOut(allBeers) {
     copy.querySelector(".remove_beer").setAttribute("id", `remove-${beerid}`);
     copy.querySelector(".add_beer").setAttribute("id", `add-${beerid}`);
     copy.querySelector(".beer_amount").setAttribute("id", `amount-${beerid}`);
+
+    // add event listener
+    copy.querySelector(".remove_beer").addEventListener("click", (e) => {
+      removeBeer(e, selectedBeers);
+    });
+    copy.querySelector(".add_beer").addEventListener("click", (e) => {
+      console.log("add beer", e.target.id);
+      addBeer(e, selectedBeers);
+    });
+
     document.querySelector(".beers_ordered").appendChild(copy);
   });
 
   //calculate the total price
   calculateTotalPrice();
-
-  //add event listeners
-
-  document.querySelectorAll(".remove_beer").forEach((button) => {
-    button.addEventListener("click", () => {
-      removeBeer(button, selectedBeers);
-    });
-  });
-
-  document.querySelectorAll(".add_beer").forEach((button) => {
-    button.addEventListener("click", () => {
-      addBeer(button, selectedBeers);
-    });
-  });
 
   // if you proceed send the selectedBeers array
   document.querySelector("#checkout_next").addEventListener("click", () => {
@@ -88,9 +87,10 @@ export function goToCheckOut(allBeers) {
     console.log("backwe go");
     document.querySelector(".checkout-wrapper").classList.add("hidden");
     document.querySelector(".beers-wrapper").classList.remove("hidden");
-    document.querySelector(".beers_ordered").innerHTML = "";
-    document.querySelector(".total_price span").textContent = "0";
-    selectedBeers = [];
+
+    /*  document.querySelector(".beers_ordered").innerHTML = "";
+    document.querySelector(".total_price span").textContent = "0"; */
+    /* selectedBeers = []; */
     selectedBeersAmount = [];
   });
 

@@ -1,7 +1,7 @@
 import { calculateTotalPrice } from "./checkout-price";
 
-export function removeBeer(button, selected) {
-  let myBeer = button.id.replace("remove-", "");
+export function removeBeer(e, selected) {
+  let myBeer = e.target.id.replace("remove-", "");
   let currentPrice = document.querySelector(`#price-${myBeer}`).textContent;
   let currentAmount = document.querySelector(`#amount-${myBeer}`).textContent;
   if (myBeer == "El-Hefe") {
@@ -77,12 +77,9 @@ export function removeBeer(button, selected) {
   }
   //updated amount of beers for each object
   selected.forEach((e) => {
-    console.log("e.name", e.name);
-    console.log("mybeer", myBeer);
-    console.log("currentamount", currentAmount);
     if (e.name == myBeer.replaceAll("-", " "))
       e.amount = Number(currentAmount) - 1;
   });
-  console.log("selected", selected);
+
   calculateTotalPrice();
 }

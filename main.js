@@ -1,6 +1,5 @@
 import "./sass/style.scss";
 import { setEventListeners } from "./modules/event-listeners.js";
-import {displayOrderNumbers} from "./modules/thankyou"
 
 window.addEventListener("DOMContentLoaded", start);
 
@@ -8,7 +7,7 @@ let allBeers = [];
 let barInfo = [];
 let currentTaps = [];
 
-
+console.log(allBeers);
 
 const Beer = {
   name: "",
@@ -65,14 +64,13 @@ function updateQueue() {
 }
 
 function prepareMenuData(jsonData) {
- 
-  let timestamp = jsonData.timestamp
+  /* console.log(jsonData); */
   let queue = jsonData.queue.length;
+  /*  console.log("queueu", queue); */
 
-  displayMenu(queue, timestamp);
-  displayOrderNumbers(jsonData.serving)
+  displayMenu(queue);
 }
-function displayMenu(queue, timestamp) {
+function displayMenu(queue) {
   document.querySelector("#people_queue").textContent = queue;
 }
 function prepareObjects(jsonData) {
