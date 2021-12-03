@@ -1,10 +1,19 @@
 import { removeBeer } from "./remove-beer";
 import { calculateTotalPrice } from "./checkout-price";
 import { addBeer } from "./add-beer";
+import { goToPayment } from "./payment";
 
 export function goToCheckOut(allBeers) {
   let selectedBeers = [];
-  let selectedBeersAmount = []
+
+  /*
+  selectedBeers.forEach((e) => {
+    for (let key in e) {
+      e[key] = "amount";
+    }
+  }); */
+
+  let selectedBeersAmount = [];
 
   document.querySelector(".beers-wrapper").classList.add("hidden");
   document.querySelector(".checkout-wrapper").classList.remove("hidden");
@@ -26,14 +35,21 @@ export function goToCheckOut(allBeers) {
   });
 
   selectedBeers.forEach((beer) => {
-    const copy = document.querySelector("template#checkout").content.cloneNode(true);
+    // add amount property for each object
+    beer.amount = 1;
+
+    const copy = document
+      .querySelector("template#checkout")
+      .content.cloneNode(true);
     let beerid = beer.name.replaceAll(" ", "-");
     copy.querySelector("img").src = beer.label;
     copy.querySelector("h3").textContent = beer.name;
     copy.querySelector(".beer_category").textContent = beer.category;
     copy.querySelector(".alc_percentaje").textContent = beer.alc;
     copy.querySelector(".calculated_price").textContent = beer.price;
-    copy.querySelector(".calculated_price").setAttribute("id", `price-${beerid}`);
+    copy
+      .querySelector(".calculated_price")
+      .setAttribute("id", `price-${beerid}`);
     copy.querySelector(".remove_beer").setAttribute("id", `remove-${beerid}`);
     copy.querySelector(".add_beer").setAttribute("id", `add-${beerid}`);
     copy.querySelector(".beer_amount").setAttribute("id", `amount-${beerid}`);
@@ -47,13 +63,13 @@ export function goToCheckOut(allBeers) {
 
   document.querySelectorAll(".remove_beer").forEach((button) => {
     button.addEventListener("click", () => {
-      removeBeer(button);
+      removeBeer(button, selectedBeers);
     });
   });
 
   document.querySelectorAll(".add_beer").forEach((button) => {
     button.addEventListener("click", () => {
-      addBeer(button);
+      addBeer(button, selectedBeers);
     });
   });
 
@@ -73,11 +89,12 @@ export function goToCheckOut(allBeers) {
     document.querySelector(".checkout-wrapper").classList.add("hidden");
     document.querySelector(".beers-wrapper").classList.remove("hidden");
     document.querySelector(".beers_ordered").innerHTML = "";
-    document.querySelector(".total_price span").textContent = "0"
+    document.querySelector(".total_price span").textContent = "0";
     selectedBeers = [];
-    selectedBeersAmount = []
-    
+    selectedBeersAmount = [];
   });
 
-
+  document.querySelector("#checkout_next").addEventListener("click", () => {
+    goToPayment(allBeers, selectedBeers);
+  });
 }
