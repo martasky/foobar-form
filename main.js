@@ -1,6 +1,6 @@
 import "./sass/style.scss";
 import { setEventListeners } from "./modules/event-listeners.js";
-
+import { displayOrderNumbers } from "./modules/thankyou";
 window.addEventListener("DOMContentLoaded", start);
 
 let allBeers = [];
@@ -64,14 +64,24 @@ function updateQueue() {
 }
 
 function prepareMenuData(jsonData) {
-  /* console.log(jsonData); */
+  let timestamp = jsonData.timestamp;
   let queue = jsonData.queue.length;
-  /*  console.log("queueu", queue); */
 
   displayMenu(queue, timestamp);
 }
-function displayMenu(queue) {
+function displayMenu(queue, timestamp) {
+  const today = new Date(timestamp);
+  const day = today.getDate();
+  const month = today.getMonth();
+  const year = today.getFullYear();
+
+  const closingDate = new Date(year, month, day, 22);
+  const closingTime = closingDate.getTime();
+  const remainingTime = closingTime - timestamp;
+  const timeUntilClosure = hourFromMs(remainingTime);
+  console.log(remainingTime);
   document.querySelector("#people_queue").textContent = queue;
+  document.querySelector("#remaining_time").textContent = timeUntilClosure;
 }
 function prepareObjects(jsonData) {
   //modify json here
@@ -180,4 +190,17 @@ function displayBeers() {
   });
 
   setEventListeners(currentTaps, barInfo);
+}
+
+function hourFromMs(time) {
+  let minutes = Math.floor((time / (1000 * 60)) % 60),
+    hours = Math.floor((time / (1000 * 60 * 60)) % 24);
+
+  hours = hours < 10 ? "0" + hours : hours;
+  minutes = minutes < 10 ? "0" + minutes : minutes;
+  if (hours <= 0 && minutes <= 0) {
+    return "00:00";
+  } else {
+    return hours + ":" + minutes;
+  }
 }
