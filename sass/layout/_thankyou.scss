@@ -1,1 +1,39 @@
 @use "../base/typography";
+
+.thank-you-wrapper{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+}
+
+#serving{
+    display: flex;
+    flex-direction: row;
+    gap: 1em
+}
+
+.now_serving{
+    font-size: 1.2em;
+    border-radius: 50%;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    padding: 0.7em 0.6em;
+    background-color: var(--card-bg-color);
+    
+}
+
+#your_order_number{
+    font-size: 3em;
+    font-weight: 700;
+}
+
+.showtick{
+    stroke-dasharray: 70;
+    animation: showtick 0.5s ease-in-out 1 forwards
+}
+
+@keyframes showtick {
+    to {
+        stroke-dashoffset: 1000;
+      }
+}
