@@ -1,6 +1,8 @@
 let isDisplayedBefore = {};
+//import { calculateTotalPrice } from "./checkout-price";
+import { processOrder } from "./process-payment";
 
-export function goToPayment(allBeers, selected) {
+export function goToPayment(barInfo, selected) {
   document.querySelector(".checkout-wrapper").classList.add("hidden");
   document.querySelector(".payment-wrapper").classList.remove("hidden");
 
@@ -32,6 +34,11 @@ export function goToPayment(allBeers, selected) {
   document
     .querySelector("#payment_back")
     .addEventListener("click", goBackToCheckOut);
+  document.querySelector("form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    console.log("myorders", selected, "barinfo", barInfo);
+    processOrder(selected, barInfo);
+  });
 }
 
 function goBackToCheckOut() {
@@ -44,7 +51,6 @@ function goBackToCheckOut() {
 
 function calculatePrice(selected) {
   let totalPrice = 0;
-  console.log(selected);
   let prices = [];
   selected.forEach((e) => {
     if (e.amount >= 1) {
@@ -58,6 +64,5 @@ function calculatePrice(selected) {
   });
 
   totalPrice = prices.reduce((a, b) => a + b);
-  console.log("total", totalPrice);
   return totalPrice;
 }

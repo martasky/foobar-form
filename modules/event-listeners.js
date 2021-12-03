@@ -1,7 +1,7 @@
 import {moreInfo} from './more-info.js'
 import { goToCheckOut } from './checkout.js'
 
-export function setEventListeners(allBeers){
+export function setEventListeners(allBeers, barInfo){
     
     document.querySelectorAll(".read_more").forEach((read)=>{
         read.addEventListener("click", (e)=>{
@@ -13,5 +13,5 @@ export function setEventListeners(allBeers){
         })
     })
 
-    document.querySelector("#proceed-button").addEventListener("click", ()=>{goToCheckOut(allBeers)})
+    document.querySelector("#proceed-button").addEventListener("click", ()=>{goToCheckOut(allBeers, barInfo)})
 }

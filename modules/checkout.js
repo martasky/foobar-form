@@ -5,7 +5,7 @@ import { goToPayment } from "./payment";
 
 let isDisplayedBefore = {};
 
-export function goToCheckOut(allBeers) {
+export function goToCheckOut(allBeers, barInfo) {
   let selectedBeers = [];
 
   let selectedBeersAmount = [];
@@ -74,7 +74,6 @@ export function goToCheckOut(allBeers) {
 
   // if you proceed send the selectedBeers array
   document.querySelector("#checkout_next").addEventListener("click", () => {
-    console.log("next");
     document.querySelector(".checkout-wrapper").classList.add("hidden");
     //loop throught the added beers, build an object with info and push it to the array selectedBeersAmount
     //document.querySelector("").classList.remove("hidden");
@@ -95,6 +94,6 @@ export function goToCheckOut(allBeers) {
   });
 
   document.querySelector("#checkout_next").addEventListener("click", () => {
-    goToPayment(allBeers, selectedBeers);
+    goToPayment(barInfo, selectedBeers);
   });
 }
