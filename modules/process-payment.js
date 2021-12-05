@@ -1,6 +1,11 @@
-import { displayOrderNumbers } from "./thankyou"
+import { displayOrderNumbers } from "./thankyou.js"
+let info =[];
 
 export function processOrder(order, barInfo){
+
+  // lets try fetching the queue instead of getting the queue passed
+
+
 const queue = barInfo.queue
 const servingOrders = barInfo.serving
 const beersOrdered = [];
@@ -15,7 +20,7 @@ order.forEach((order)=>{
  
  beersOrdered.push(beer)
 });
-console.log(beersOrdered)
+console.log("beers ordered", beersOrdered)
 //send payload
 //enpoint /order
 /* structure[
@@ -34,11 +39,30 @@ fetch("https://foo-bar-project.herokuapp.com/order", {
       console.log(response);}
 
     )
-    .then(displayOrderNumbers(order, servingOrders, queue))
+   .then(setTimeout(updateQueue, 1000, beersOrdered))
+   
 
     
 
 }
+
+function updateQueue(beersOrdered) {
+  let urlBar = "https://foo-bar-project.herokuapp.com/";
+
+  fetch(urlBar)
+    .then((response) => response.json())
+    .then((jsonData) => {
+      info = jsonData
+      console.log("info", info);
+      displayOrderNumbers(beersOrdered, info)
+    })
+  
+
+    
+}
+
+
+
 
 
 

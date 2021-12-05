@@ -1,13 +1,12 @@
 import "./sass/style.scss";
 import { setEventListeners } from "./modules/event-listeners.js";
-import { displayOrderNumbers } from "./modules/thankyou";
+import {hourFromMs} from "./modules/convertTime.js"
+
 window.addEventListener("DOMContentLoaded", start);
 
 let allBeers = [];
 let barInfo = [];
 let currentTaps = [];
-
-console.log(allBeers);
 
 const Beer = {
   name: "",
@@ -79,7 +78,7 @@ function displayMenu(queue, timestamp) {
   const closingTime = closingDate.getTime();
   const remainingTime = closingTime - timestamp;
   const timeUntilClosure = hourFromMs(remainingTime);
-  console.log(remainingTime);
+
   document.querySelector("#people_queue").textContent = queue;
   document.querySelector("#remaining_time").textContent = timeUntilClosure;
 }
@@ -104,7 +103,6 @@ function prepareObjects(jsonData) {
     allBeers.push(beer);
   });
 
-  console.log("bar", barInfo);
   currentTaps = [];
   document.querySelector(".beer_cards_wrapper").innerHTML = "";
   let isFoundBefore = {};
@@ -130,7 +128,7 @@ function prepareObjects(jsonData) {
 
     currentTaps.push(tap);
   });
-  console.log("taps", currentTaps);
+
   displayBeers();
 }
 
@@ -167,24 +165,17 @@ function getLabel(elm) {
 }
 
 function displayBeers() {
-  console.log(currentTaps);
   currentTaps.forEach((beer) => {
-    const clone = document
-      .querySelector("template#beers")
-      .content.cloneNode(true);
+    const clone = document.querySelector("template#beers").content.cloneNode(true);
     const chosenBeer = beer.name.replaceAll(" ", "-");
 
     clone.querySelector(".beer_name").textContent = beer.name;
-    clone
-      .querySelector(".read_more")
-      .setAttribute("id", `${beer.name.replaceAll(" ", "-")}`);
+    clone.querySelector(".read_more").setAttribute("id", `${beer.name.replaceAll(" ", "-")}`);
     clone.querySelector(".beer_type_name").textContent = `${beer.category},`;
     clone.querySelector(".beer_alkohol").textContent = `${beer.alc}%`;
     clone.querySelector(".beer_price").textContent = `${beer.price} kr`;
     clone.querySelector(".beer_img img").src = beer.label;
-    clone
-      .querySelector('input[type="checkbox"')
-      .setAttribute("id", `${chosenBeer}-chosen`);
+    clone.querySelector('input[type="checkbox"').setAttribute("id", `${chosenBeer}-chosen`);
 
     document.querySelector(".beer_cards_wrapper").appendChild(clone);
   });
@@ -192,15 +183,4 @@ function displayBeers() {
   setEventListeners(currentTaps, barInfo);
 }
 
-function hourFromMs(time) {
-  let minutes = Math.floor((time / (1000 * 60)) % 60),
-    hours = Math.floor((time / (1000 * 60 * 60)) % 24);
 
-  hours = hours < 10 ? "0" + hours : hours;
-  minutes = minutes < 10 ? "0" + minutes : minutes;
-  if (hours <= 0 && minutes <= 0) {
-    return "00:00";
-  } else {
-    return hours + ":" + minutes;
-  }
-}
