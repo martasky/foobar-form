@@ -1,6 +1,6 @@
 import "./sass/style.scss";
 import { setEventListeners } from "./modules/event-listeners.js";
-import {hourFromMs} from "./modules/convertTime.js"
+import { hourFromMs } from "./modules/convertTime.js";
 
 window.addEventListener("DOMContentLoaded", start);
 
@@ -8,18 +8,16 @@ let allBeers = [];
 let barInfo = [];
 let currentTaps = [];
 
-class Beer{
-  constructor(name, category, alc, price, label, description){
+class Beer {
+  constructor(name, category, alc, price, label, description) {
     this.name = name;
     this.category = category;
     this.alc = alc;
     this.price = price;
-    this.label = label; 
-    this.description = description
+    this.label = label;
+    this.description = description;
   }
 }
-
-
 
 const Tap = {
   id: "",
@@ -89,16 +87,21 @@ function displayMenu(queue, timestamp) {
 function prepareObjects(jsonData) {
   //modify json here
   jsonData.forEach((elm) => {
-    
     // add price to each beer
     let beerPrice = getBeerPrice(elm);
     // get label url
     let label = getLabel(elm);
     // setting properties in the new object to that values
-    const beer = new Beer (elm.name, elm.category, elm.alc, beerPrice, label, elm.description)
-    
+    const beer = new Beer(
+      elm.name,
+      elm.category,
+      elm.alc,
+      beerPrice,
+      label,
+      elm.description
+    );
+
     allBeers.push(beer);
-   
   });
 
   currentTaps = [];
@@ -157,28 +160,34 @@ function getBeerPrice(elm) {
   return price;
 }
 function getLabel(elm) {
-  let label = elm.label;
+  let label = elm.label.replace("png", "webp");
+
   let imgUrl = "/assets/beer-images/" + label;
   return imgUrl;
 }
 
 function displayBeers() {
   currentTaps.forEach((beer) => {
-    const clone = document.querySelector("template#beers").content.cloneNode(true);
+    const clone = document
+      .querySelector("template#beers")
+      .content.cloneNode(true);
     const chosenBeer = beer.name.replaceAll(" ", "-");
 
     clone.querySelector(".beer_name").textContent = beer.name;
-    clone.querySelector(".read_more").setAttribute("id", `${beer.name.replaceAll(" ", "-")}`);
+    clone
+      .querySelector(".read_more")
+      .setAttribute("id", `${beer.name.replaceAll(" ", "-")}`);
     clone.querySelector(".beer_type_name").textContent = `${beer.category},`;
     clone.querySelector(".beer_alkohol").textContent = `${beer.alc}%`;
     clone.querySelector(".beer_price").textContent = `${beer.price} kr`;
     clone.querySelector(".beer_img img").src = beer.label;
-    clone.querySelector('input[type="checkbox"').setAttribute("id", `${chosenBeer}-chosen`);
+    clone.querySelector(".beer_img img").alt = `Logo of the beer ${beer.name}`;
+    clone
+      .querySelector('input[type="checkbox"')
+      .setAttribute("id", `${chosenBeer}-chosen`);
 
     document.querySelector(".beer_cards_wrapper").appendChild(clone);
   });
 
   setEventListeners(currentTaps, barInfo);
 }
-
-

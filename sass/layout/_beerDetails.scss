@@ -1,81 +1,81 @@
 @use "../base/typography";
 
-.beer_details{
-    display:none;
+.beer_details {
+  display: none;
 }
 
 .show {
-    display:block;
-    background-color: white;;
-    padding-bottom: 20vh; 
-  }
+  display: block;
+  background-color: white;
+  padding-bottom: 20vh;
+}
 
 .hide {
-    display:none;
+  display: none;
 }
 
 .details_wrapper {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
-  }
-  
-  .back_circle {
-    grid-column: 1;
-    grid-row: 1;
-    z-index: 1;
-  }
-  
-  .details_wrapper {
-    grid-column: 1;
-    grid-row: 1/-1;
-    padding: 15px;
-    display: grid;
-    grid-gap: 1em;
-  }
-  
-  .beer_header {
-    display: grid;
-    grid-gap: 1em;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: 1fr;
-  }
-  
-  .beer_header img {
-    max-width: 100px;
-    border-radius: 13px;
-  }
-  
-  .other_property img {
-    max-height: 50px;
-    max-width: 50px;
-  }
-  
-  .others {
-    display: grid;
-    grid-gap: 1em;
-  }
-  
-  .other_property {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto 1fr;
-  }
-  
-  .other_property img {
-    grid-column: 1;
-    grid-row: 1;
-  }
-  
-  .other_property h2 {
-    grid-column: 2;
-    grid-row: 1;
-    margin-left: 1em;
-  }
-  
-  .other_property p {
-    grid-column: 1/-1;
-    grid-row: 2;
-  }
-  
-  
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+}
+
+.back_circle {
+  grid-column: 1;
+  grid-row: 1;
+  z-index: 1;
+}
+
+.details_wrapper {
+  grid-column: 1;
+  grid-row: 1/-1;
+  padding: 15px;
+  display: grid;
+  grid-gap: 1em;
+}
+
+.beer_header {
+  display: grid;
+  grid-gap: 1em;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr;
+}
+
+.beer_header img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 13px;
+}
+
+.other_property img {
+  max-height: 50px;
+  max-width: 50px;
+}
+
+.others {
+  display: grid;
+  grid-gap: 1em;
+}
+
+.other_property {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+}
+
+.other_property img {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.other_property h2 {
+  grid-column: 2;
+  grid-row: 1;
+  margin-left: 1em;
+}
+
+.other_property p {
+  grid-column: 1/-1;
+  grid-row: 2;
+}
