@@ -9,14 +9,15 @@ export function processOrder(order, barInfo){
 const queue = barInfo.queue
 const servingOrders = barInfo.serving
 const beersOrdered = [];
-const Beer = {
-    name: "",
-    amount: 0
-};
+class Beer{
+  constructor(name, amount){
+    this.name = name;
+    this.amount = amount
+  }
+}
+
 order.forEach((order)=>{
- const beer = Object.create(Beer);
- beer.amount = order.amount;
- beer.name = order.name;
+  const beer = new Beer(order.name, order.amount)
  
  beersOrdered.push(beer)
 });

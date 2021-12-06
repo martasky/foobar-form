@@ -8,14 +8,18 @@ let allBeers = [];
 let barInfo = [];
 let currentTaps = [];
 
-const Beer = {
-  name: "",
-  category: "",
-  alc: "",
-  price: "",
-  label: "",
-  description: "",
-};
+class Beer{
+  constructor(name, category, alc, price, label, description){
+    this.name = name;
+    this.category = category;
+    this.alc = alc;
+    this.price = price;
+    this.label = label; 
+    this.description = description
+  }
+}
+
+
 
 const Tap = {
   id: "",
@@ -85,22 +89,16 @@ function displayMenu(queue, timestamp) {
 function prepareObjects(jsonData) {
   //modify json here
   jsonData.forEach((elm) => {
-    const beer = Object.create(Beer);
-
+    
     // add price to each beer
     let beerPrice = getBeerPrice(elm);
-
     // get label url
-
     let label = getLabel(elm);
     // setting properties in the new object to that values
-    beer.name = elm.name;
-    beer.category = elm.category;
-    beer.alc = elm.alc;
-    beer.price = beerPrice;
-    beer.label = label;
-    beer.description = elm.description;
+    const beer = new Beer (elm.name, elm.category, elm.alc, beerPrice, label, elm.description)
+    
     allBeers.push(beer);
+   
   });
 
   currentTaps = [];
