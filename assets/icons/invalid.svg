@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 53 53">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ff4040;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #ff4040;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 3px;
+      }
+    </style>
+  </defs>
+  <g id="invalid">
+    <g>
+      <path class="cls-1" d="M26.5,3a23.5,23.5,0,0,0-9.15,45.15,23.5,23.5,0,1,0,18.3-43.3A23.31,23.31,0,0,0,26.5,3m0-3A26.5,26.5,0,1,1,0,26.5,26.49,26.49,0,0,1,26.5,0Z"/>
+      <g>
+        <path class="cls-2" d="M14.82,38.18,38.18,14.82"/>
+        <path class="cls-2" d="M14.45,15.2l24.1,22.6"/>
+      </g>
+    </g>
+  </g>
+</svg>
