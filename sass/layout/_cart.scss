@@ -1,54 +1,85 @@
 @use "../base/typography";
 
-
-.checkout_order_wrapper{
-    display:grid;
-    grid-gap:3em;
+.checkout_order_wrapper {
+  display: grid;
+  grid-gap: 3em;
 }
-.checkout_order_wrapper img{
- max-width: 60px;
- border-radius: 13px;
-}
-
-.beer_info{
-    display:grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: 1fr;
-    grid-gap: 1em;
+.checkout_order_wrapper img {
+  max-width: 60px;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 13px;
 }
 
-.checkout_line{
-    height: 0.2em;
-    width: 100%;
-    background: var(--main-typography-color);
+.beer_info {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  grid-template-rows: 1fr;
+  grid-gap: 1em;
+}
+
+.checkout_line {
+  height: 0.2em;
+  width: 100%;
+  background: var(--main-typography-color);
+  border-radius: 13px;
+}
+
+.total_price {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#checkout_buttons {
+  margin-top: 20vh;
+}
+
+.beers_ordered {
+  display: grid;
+  grid-gap: 1em;
+}
+
+.beer_ordered {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-gap: 1em;
+  align-items: flex-end;
+}
+
+.beer_ordered div:nth-child(3) {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 340px) {
+  .checkout_order_wrapper {
+    font-size: 0.7rem;
+  }
+  .checkout_order_wrapper img {
+    max-width: 45px;
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
     border-radius: 13px;
+  }
+  .remove_beer,
+  .add_beer {
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+  }
 }
 
-.total_price{
-    display:flex;
-    justify-content: flex-end;
-}
-
-#checkout_buttons{
-    margin-top: 20vh
-}
-
-.beers_ordered{
-    display: grid;
-    grid-gap: 1em;
-  
-}
-
-.beer_ordered{
-    display:grid;
-    grid-template-columns: 3fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    grid-gap:1em;
-    align-items: flex-end;
-   
-}
-
-.beer_ordered div:nth-child(3){
-    display:flex;
-    justify-content: flex-end;
+@media screen and (min-width: 341px) and (max-width: 420px) {
+  .checkout_order_wrapper {
+    font-size: 0.8rem;
+  }
+  .remove_beer,
+  .add_beer {
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+  }
 }
