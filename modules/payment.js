@@ -27,10 +27,17 @@ export function goToPayment(barInfo, selected) {
     document.querySelector("#orders-list").appendChild(copy);
   });
 
+//validation checkbox
+document.querySelector('input[id="accept_terms"]').setCustomValidity("To proceed with your order, please, accept the terms and conditions")
+
   document.querySelector("#payment_back").addEventListener("click", goBackToCheckOut);
+  
   document.querySelector("form").addEventListener("submit", (e) => {
     e.preventDefault();
-    processOrder(selected, barInfo);
+   
+    if (terms.checked) {
+      processOrder(selected, barInfo);
+    }
   });
 }
 
@@ -48,7 +55,7 @@ function calculatePrice(selected) {
   selected.forEach((e) => {
     if (e.amount >= 1) {
       let oneBeerPrice = e.amount * e.price;
-        prices.push(oneBeerPrice);
+      prices.push(oneBeerPrice);
     } else {
       return;
     }

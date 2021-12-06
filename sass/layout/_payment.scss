@@ -119,6 +119,53 @@
     margin: 0.5rem 1.5rem;
   }
 }
+/* -------------Form visual validation -------------------*/
+.requirements{
+  max-height: 0;
+  transition: 0.2s;
+  overflow: hidden;
+}
+#payment_form input[type="text"] {
+  &:invalid:not(:focus):not(:placeholder-shown) {
+    background-image: url(/assets/icons/invalid.svg);
+    background-size: 19px 19px;
+    background-repeat: no-repeat;
+    background-position: 95% 50%;
+    border: 1px solid red;
+  }
+
+  &:invalid:not(:focus):not(:placeholder-shown) {
+    & ~ .requirements {
+      max-height: 200px;
+      margin: 0;
+      color: red;
+    }
+  }
+
+  &:valid {
+    background-image: url(/assets/icons/tick.svg);
+    background-size: 19px 19px;
+    background-repeat: no-repeat;
+    background-position: 95% 50%;
+  }
+
+  &:placeholder-shown {
+    background-image: none;
+    border: none;
+  }
+}
+.warning{
+  color: red;
+  transition: 2s ease-in-out;
+}
+.display{
+  display:block
+}
+/* #payment_form input[id="accept_terms"]:invalid:not(:focus){
+  & ~ label {    
+    color: red;
+  }
+} */
 
 @media screen and (min-width: 700px) {
   #order_details {
