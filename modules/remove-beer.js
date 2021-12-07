@@ -79,6 +79,9 @@ export function removeBeer(e, selected) {
   selected.forEach((e) => {
     if (e.name == myBeer.replaceAll("-", " "))
       e.amount = Number(currentAmount) - 1;
+    if (e.amount == 0) {
+      console.log(e);
+    }
   });
 
   calculateTotalPrice();
