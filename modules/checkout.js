@@ -4,6 +4,7 @@ import { addBeer } from "./add-beer";
 import { goToPayment } from "./payment";
 
 let isDisplayedBefore = {};
+console.log("is displayed before", isDisplayedBefore);
 
 export function goToCheckOut(allBeers, barInfo) {
   let selectedBeers = [];
@@ -54,7 +55,7 @@ export function goToCheckOut(allBeers, barInfo) {
 
     // add event listener
     copy.querySelector(".remove_beer").addEventListener("click", (e) => {
-      removeBeer(e, selectedBeers);
+      removeBeer(e, selectedBeers, isDisplayedBefore);
     });
     copy.querySelector(".add_beer").addEventListener("click", (e) => {
       console.log("add beer", e.target.id);

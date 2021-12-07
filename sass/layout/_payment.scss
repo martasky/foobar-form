@@ -120,7 +120,7 @@
   }
 }
 /* -------------Form visual validation -------------------*/
-.requirements{
+.requirements {
   max-height: 0;
   transition: 0.2s;
   overflow: hidden;
@@ -154,12 +154,12 @@
     border: none;
   }
 }
-.warning{
+.warning {
   color: red;
   transition: 2s ease-in-out;
 }
-.display{
-  display:block
+.display {
+  display: block;
 }
 /* #payment_form input[id="accept_terms"]:invalid:not(:focus){
   & ~ label {    
@@ -185,5 +185,22 @@
     width: 85%;
     max-width: 350px;
     margin-top: 3rem;
+  }
+}
+@media screen and (min-width: 700px) and (max-width: 790px) {
+  .payment-details_wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 5rem;
+  }
+  .form_wrapper {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  label {
+    font-size: 0.9rem;
   }
 }
