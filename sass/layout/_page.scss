@@ -41,3 +41,19 @@ h2 {
     margin-bottom: 5rem;
   }
 }
+@media screen and (min-width: 1000px) {
+  .form_content {
+    width: 800px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 4rem;
+    margin-bottom: 5rem;
+  }
+  .details_wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    width: 800px;
+    margin: 0 auto;
+  }
+}

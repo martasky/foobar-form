@@ -1,6 +1,9 @@
 import "./sass/style.scss";
-import { setEventListeners } from "./modules/event-listeners.js";
-import { hourFromMs } from "./modules/convertTime.js";
+
+import { getLabel } from "./modules/get-label.js";
+import { getBeerPrice } from "./modules/get-beer-price";
+import { displayBeers } from "./modules/display-beers";
+import { displayMenu } from "./modules/display-menu";
 
 window.addEventListener("DOMContentLoaded", start);
 
@@ -33,8 +36,12 @@ function start() {
   getJSONfiles();
   setInterval(updateQueue, 5000);
   updateQueue();
+  document.querySelector(".logo img").addEventListener("click", goToStart);
 }
 
+function goToStart() {
+  window.location.reload();
+}
 function getJSONfiles() {
   let urlBeers = "https://foo-bar-project.herokuapp.com/beertypes";
   let urlBar = "https://foo-bar-project.herokuapp.com/";
@@ -70,20 +77,7 @@ function prepareMenuData(jsonData) {
 
   displayMenu(queue, timestamp);
 }
-function displayMenu(queue, timestamp) {
-  const today = new Date(timestamp);
-  const day = today.getDate();
-  const month = today.getMonth();
-  const year = today.getFullYear();
 
-  const closingDate = new Date(year, month, day, 22);
-  const closingTime = closingDate.getTime();
-  const remainingTime = closingTime - timestamp;
-  const timeUntilClosure = hourFromMs(remainingTime);
-
-  document.querySelector("#people_queue").textContent = queue;
-  document.querySelector("#remaining_time").textContent = timeUntilClosure;
-}
 function prepareObjects(jsonData) {
   //modify json here
   jsonData.forEach((elm) => {
@@ -130,64 +124,5 @@ function prepareObjects(jsonData) {
     currentTaps.push(tap);
   });
 
-  displayBeers();
-}
-
-function getBeerPrice(elm) {
-  let name = elm.name;
-  let price = "";
-  if (name == "El Hefe") {
-    price = 40;
-  } else if (name == "Fairy Tale Ale") {
-    price = 60;
-  } else if (name == "GitHop") {
-    price = 60;
-  } else if (name == "Hollaback Lager") {
-    price = 50;
-  } else if (name == "Hoppily Ever After") {
-    price = 65;
-  } else if (name == "Mowintime") {
-    price = 30;
-  } else if (name == "Row 26") {
-    price = 80;
-  } else if (name == "Ruined Childhood") {
-    price = 70;
-  } else if (name == "Sleighride") {
-    price = 70;
-  } else {
-    price = 50;
-  }
-  return price;
-}
-function getLabel(elm) {
-  let label = elm.label.replace("png", "webp");
-
-  let imgUrl = "/assets/beer-images/" + label;
-  return imgUrl;
-}
-
-function displayBeers() {
-  currentTaps.forEach((beer) => {
-    const clone = document
-      .querySelector("template#beers")
-      .content.cloneNode(true);
-    const chosenBeer = beer.name.replaceAll(" ", "-");
-
-    clone.querySelector(".beer_name").textContent = beer.name;
-    clone
-      .querySelector(".read_more")
-      .setAttribute("id", `${beer.name.replaceAll(" ", "-")}`);
-    clone.querySelector(".beer_type_name").textContent = `${beer.category},`;
-    clone.querySelector(".beer_alkohol").textContent = `${beer.alc}%`;
-    clone.querySelector(".beer_price").textContent = `${beer.price} kr`;
-    clone.querySelector(".beer_img img").src = beer.label;
-    clone.querySelector(".beer_img img").alt = `Logo of the beer ${beer.name}`;
-    clone
-      .querySelector('input[type="checkbox"')
-      .setAttribute("id", `${chosenBeer}-chosen`);
-
-    document.querySelector(".beer_cards_wrapper").appendChild(clone);
-  });
-
-  setEventListeners(currentTaps, barInfo);
+  displayBeers(currentTaps, barInfo);
 }

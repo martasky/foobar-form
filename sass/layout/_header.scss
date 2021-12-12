@@ -27,7 +27,7 @@
   gap: 1rem;
   width: 100%;
   p {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
   }
 }
 
@@ -38,14 +38,16 @@
   justify-content: center;
 }
 /* -----logo--------- */
+
+.logo img {
+  width: 300px;
+}
 .logo {
-  font-size: 2rem;
-  text-align: center;
-  padding: 2rem 0;
+  padding: 2rem;
+  padding-bottom: 1rem;
+  display: grid;
+  place-items: center;
   background-color: var(--bg-header-color);
-  color: var(--btn-text-color);
-  font-family: var(--primary-font);
-  font-weight: bold;
 }
 
 @media screen and (min-width: 700px) {
