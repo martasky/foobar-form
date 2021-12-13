@@ -15,12 +15,11 @@ export function displayBeers(currentTaps, barInfo) {
     clone.querySelector(".beer_price").textContent = `${beer.price} kr`;
     clone.querySelector(".beer_img img").src = beer.label;
 
-    clone.querySelector("label").for = `${chosenBeer}-chosen`;
     clone.querySelector(".beer_img img").alt = `Logo of the beer ${beer.name}`;
     clone
       .querySelector('input[type="checkbox"')
       .setAttribute("id", `${chosenBeer}-chosen`);
-
+    clone.querySelector("label").setAttribute("for", `${chosenBeer}-chosen`);
     document.querySelector(".beer_cards_wrapper").appendChild(clone);
   });
 
