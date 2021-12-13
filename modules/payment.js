@@ -1,5 +1,6 @@
 import { processOrder } from "./process-payment";
 import { calculatePrice } from "./calculate-price-payment";
+import { formattedCreditCardInput, formattedExpiry, formattedCVW } from "./formatted-inputs";
 
 export function goToPayment(selected) {
   document.querySelector(".checkout-wrapper").classList.add("hidden");
