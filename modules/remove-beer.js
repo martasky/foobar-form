@@ -1,9 +1,8 @@
-
 import { calculatePrice } from "./calculate-price-payment";
 
 export function removeBeer(e, selected, isDisplayedBefore) {
   let target = e.target;
-  console.log("target", target);
+
   let myBeer = e.target.id.replace("remove-", "");
   let currentPrice = document.querySelector(`#price-${myBeer}`).textContent;
   let currentAmount = document.querySelector(`#amount-${myBeer}`).textContent;
@@ -90,6 +89,6 @@ export function removeBeer(e, selected, isDisplayedBefore) {
     }
   });
 
- //  calculateTotalPrice()
- document.querySelector(".total_price span").textContent = calculatePrice(selected);
+  document.querySelector(".total_price span").textContent =
+    calculatePrice(selected);
 }
