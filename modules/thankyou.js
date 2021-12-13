@@ -2,7 +2,7 @@ import {findMyOrder} from "/modules/find-my-order.js"
 
 
 export function displayOrderNumbers(myorder, info) {
-  //to find out which order is ours, we'll compare the queue and serving orders with ours
+  
   const serving = info.serving;
   document.querySelector(".payment-wrapper").classList.add("hidden");
   document.querySelector(".thank-you-wrapper").classList.remove("hidden");
@@ -10,8 +10,7 @@ export function displayOrderNumbers(myorder, info) {
     window.location.reload();
   });
 
-  console.log("my order", myorder, "orders", info);
-
+//to find out which order is ours, we'll compare the queue and serving orders with ours
   findMyOrder(myorder, info);
 
   document.querySelector("#serving").innerHTML = "";

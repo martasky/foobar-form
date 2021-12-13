@@ -14,7 +14,7 @@ export function processOrder(order) {
     const beer = new Beer(order.name, order.amount);
     beersOrdered.push(beer);
   });
-  console.log("beers ordered", beersOrdered);
+  
 
   //send payload & we need to fetch the bar info again in order to get the latest info
 
@@ -25,9 +25,6 @@ export function processOrder(order) {
     },
     body: JSON.stringify(beersOrdered),
   })
-    .then((response) => {
-      console.log(response);
-    })
     .then(setTimeout(updateQueue, 1000, beersOrdered));
 }
 
@@ -39,7 +36,6 @@ function updateQueue(beersOrdered) {
     .then((response) => response.json())
     .then((jsonData) => {
       info = jsonData;
-      console.log("info", info);
       displayOrderNumbers(beersOrdered, info);
     });
 }

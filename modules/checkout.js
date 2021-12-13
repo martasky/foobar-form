@@ -1,15 +1,15 @@
 import { removeBeer } from "./remove-beer";
-import { calculateTotalPrice } from "./checkout-price";
 import { addBeer } from "./add-beer";
-import { goToPayment } from "./payment";
 import { calculatePrice } from "./calculate-price-payment";
+import { goToPayment } from "./payment";
+
+let isDisplayedBefore = {};
 
 export function goToCheckOut(allBeers, barInfo) {
+  let selectedBeers = [];
+
   document.querySelector(".beers-wrapper").classList.add("hidden");
   document.querySelector(".checkout-wrapper").classList.remove("hidden");
-  //set variables for cleaning the list
-  let selectedBeers = [];
-  let isDisplayedBefore = {};
   //get the information about selected beers
   let beer_1;
   let beer;
@@ -53,7 +53,6 @@ export function goToCheckOut(allBeers, barInfo) {
       removeBeer(e, selectedBeers, isDisplayedBefore);
     });
     copy.querySelector(".add_beer").addEventListener("click", (e) => {
-      console.log("add beer", e.target.id);
       addBeer(e, selectedBeers);
     });
 
@@ -61,20 +60,22 @@ export function goToCheckOut(allBeers, barInfo) {
   });
 
   //calculate the total price
-  //calculateTotalPrice();
-  document.querySelector(".total_price span").textContent = `Total: ${calculatePrice(selectedBeers)} DKK`
-  calculatePrice
+  document.querySelector(".total_price span").textContent = calculatePrice(selectedBeers);
 
   // if you proceed send the selectedBeers array
   document.querySelector("#checkout_next").addEventListener("click", () => {
-    goToPayment( selectedBeers);
+    goToPayment(selectedBeers);
   });
 
-  // event listeners to go back 
+  // if you go back clean the selectedBeers array and the html
 
   document.querySelector("#checkout_back").addEventListener("click", () => {
     document.querySelector(".checkout-wrapper").classList.add("hidden");
     document.querySelector(".beers-wrapper").classList.remove("hidden");
+
+    /*  document.querySelector(".beers_ordered").innerHTML = "";
+    document.querySelector(".total_price span").textContent = "0"; */
+    /* selectedBeers = []; */
+    //selectedBeersAmount = [];
   });
 }
-
