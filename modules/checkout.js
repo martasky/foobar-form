@@ -1,10 +1,9 @@
 import { removeBeer } from "./remove-beer";
-import { calculateTotalPrice } from "./checkout-price";
 import { addBeer } from "./add-beer";
+import { calculatePrice } from "./calculate-price-payment";
 import { goToPayment } from "./payment";
 
 let isDisplayedBefore = {};
-console.log("is displayed before", isDisplayedBefore);
 
 export function goToCheckOut(allBeers, barInfo) {
   let selectedBeers = [];
@@ -37,18 +36,14 @@ export function goToCheckOut(allBeers, barInfo) {
     isDisplayedBefore[beer.name] = true;
     beer.amount = 1;
 
-    const copy = document
-      .querySelector("template#checkout")
-      .content.cloneNode(true);
+    const copy = document.querySelector("template#checkout").content.cloneNode(true);
     let beerid = beer.name.replaceAll(" ", "-");
     copy.querySelector("img").src = beer.label;
     copy.querySelector("h3").textContent = beer.name;
     copy.querySelector(".beer_category").textContent = beer.category;
     copy.querySelector(".alc_percentaje").textContent = beer.alc;
     copy.querySelector(".calculated_price").textContent = beer.price;
-    copy
-      .querySelector(".calculated_price")
-      .setAttribute("id", `price-${beerid}`);
+    copy.querySelector(".calculated_price").setAttribute("id", `price-${beerid}`);
     copy.querySelector(".remove_beer").setAttribute("id", `remove-${beerid}`);
     copy.querySelector(".add_beer").setAttribute("id", `add-${beerid}`);
     copy.querySelector(".beer_amount").setAttribute("id", `amount-${beerid}`);
@@ -58,7 +53,6 @@ export function goToCheckOut(allBeers, barInfo) {
       removeBeer(e, selectedBeers, isDisplayedBefore);
     });
     copy.querySelector(".add_beer").addEventListener("click", (e) => {
-      console.log("add beer", e.target.id);
       addBeer(e, selectedBeers);
     });
 
@@ -66,11 +60,11 @@ export function goToCheckOut(allBeers, barInfo) {
   });
 
   //calculate the total price
-  calculateTotalPrice();
+  document.querySelector(".total_price span").textContent = calculatePrice(selectedBeers);
 
   // if you proceed send the selectedBeers array
   document.querySelector("#checkout_next").addEventListener("click", () => {
-    goToPayment(barInfo, selectedBeers);
+    goToPayment(selectedBeers);
   });
 
   // if you go back clean the selectedBeers array and the html

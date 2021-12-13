@@ -1,4 +1,5 @@
-import { calculateTotalPrice } from "./checkout-price";
+
+import { calculatePrice } from "./calculate-price-payment";
 
 export function addBeer(e, selected) {
   let myBeer = e.target.id.replace("add-", "");
@@ -64,5 +65,5 @@ export function addBeer(e, selected) {
       e.amount = Number(currentAmount) + 1;
   });
 
-  calculateTotalPrice();
+  document.querySelector(".total_price span").textContent = calculatePrice(selected);
 }

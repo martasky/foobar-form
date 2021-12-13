@@ -1,4 +1,5 @@
-import { calculateTotalPrice } from "./checkout-price";
+
+import { calculatePrice } from "./calculate-price-payment";
 
 export function removeBeer(e, selected, isDisplayedBefore) {
   let target = e.target;
@@ -82,17 +83,13 @@ export function removeBeer(e, selected, isDisplayedBefore) {
     if (e.name == myBeer.replaceAll("-", " "))
       e.amount = Number(currentAmount) - 1;
     if (e.amount == 0) {
-      console.log(e);
       let beerIndex = selected.indexOf(e);
       selected.splice(beerIndex, 1);
-      console.log("after splice", selected);
-      console.log(target.parentElement.parentElement);
       target.parentElement.parentElement.remove();
-      console.log("what is isdisplay now", isDisplayedBefore);
       delete isDisplayedBefore[e.name];
-      console.log("and now?", isDisplayedBefore);
     }
   });
 
-  calculateTotalPrice();
+ //  calculateTotalPrice()
+ document.querySelector(".total_price span").textContent = calculatePrice(selected);
 }
