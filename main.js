@@ -1,5 +1,5 @@
 import "./sass/style.scss";
-import {getJSONfiles} from "./modules/get-files.js"
+import { getJSONfiles } from "./modules/get-files.js";
 import { updateQueue } from "./modules/update-queue.js";
 
 window.addEventListener("DOMContentLoaded", start);
@@ -9,9 +9,3 @@ function start() {
   setInterval(updateQueue, 5000);
   updateQueue();
 }
-
-
-
-
-
-
