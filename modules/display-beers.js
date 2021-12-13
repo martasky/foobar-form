@@ -14,8 +14,8 @@ export function displayBeers(currentTaps, barInfo) {
     clone.querySelector(".beer_alkohol").textContent = `${beer.alc}%`;
     clone.querySelector(".beer_price").textContent = `${beer.price} kr`;
     clone.querySelector(".beer_img img").src = beer.label;
-    clone.querySelector("input[type=checkbox").id = beer.name;
-    clone.querySelector("label").for = beer.name;
+
+    clone.querySelector("label").for = `${chosenBeer}-chosen`;
     clone.querySelector(".beer_img img").alt = `Logo of the beer ${beer.name}`;
     clone
       .querySelector('input[type="checkbox"')
