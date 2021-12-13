@@ -1,3 +1,4 @@
+import "/sass/style.scss";
 import { hourFromMs } from "/modules/convertTime.js";
 export function displayMenu(queue, timestamp) {
   const today = new Date(timestamp);

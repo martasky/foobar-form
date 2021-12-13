@@ -2,15 +2,14 @@ import { removeBeer } from "./remove-beer";
 import { calculateTotalPrice } from "./checkout-price";
 import { addBeer } from "./add-beer";
 import { goToPayment } from "./payment";
-
-let isDisplayedBefore = {};
-console.log("is displayed before", isDisplayedBefore);
+import { calculatePrice } from "./calculate-price-payment";
 
 export function goToCheckOut(allBeers, barInfo) {
-  let selectedBeers = [];
-
   document.querySelector(".beers-wrapper").classList.add("hidden");
   document.querySelector(".checkout-wrapper").classList.remove("hidden");
+  //set variables for cleaning the list
+  let selectedBeers = [];
+  let isDisplayedBefore = {};
   //get the information about selected beers
   let beer_1;
   let beer;
@@ -37,18 +36,14 @@ export function goToCheckOut(allBeers, barInfo) {
     isDisplayedBefore[beer.name] = true;
     beer.amount = 1;
 
-    const copy = document
-      .querySelector("template#checkout")
-      .content.cloneNode(true);
+    const copy = document.querySelector("template#checkout").content.cloneNode(true);
     let beerid = beer.name.replaceAll(" ", "-");
     copy.querySelector("img").src = beer.label;
     copy.querySelector("h3").textContent = beer.name;
     copy.querySelector(".beer_category").textContent = beer.category;
     copy.querySelector(".alc_percentaje").textContent = beer.alc;
     copy.querySelector(".calculated_price").textContent = beer.price;
-    copy
-      .querySelector(".calculated_price")
-      .setAttribute("id", `price-${beerid}`);
+    copy.querySelector(".calculated_price").setAttribute("id", `price-${beerid}`);
     copy.querySelector(".remove_beer").setAttribute("id", `remove-${beerid}`);
     copy.querySelector(".add_beer").setAttribute("id", `add-${beerid}`);
     copy.querySelector(".beer_amount").setAttribute("id", `amount-${beerid}`);
@@ -66,22 +61,20 @@ export function goToCheckOut(allBeers, barInfo) {
   });
 
   //calculate the total price
-  calculateTotalPrice();
+  //calculateTotalPrice();
+  document.querySelector(".total_price span").textContent = `Total: ${calculatePrice(selectedBeers)} DKK`
+  calculatePrice
 
   // if you proceed send the selectedBeers array
   document.querySelector("#checkout_next").addEventListener("click", () => {
-    goToPayment(barInfo, selectedBeers);
+    goToPayment( selectedBeers);
   });
 
-  // if you go back clean the selectedBeers array and the html
+  // event listeners to go back 
 
   document.querySelector("#checkout_back").addEventListener("click", () => {
     document.querySelector(".checkout-wrapper").classList.add("hidden");
     document.querySelector(".beers-wrapper").classList.remove("hidden");
-
-    /*  document.querySelector(".beers_ordered").innerHTML = "";
-    document.querySelector(".total_price span").textContent = "0"; */
-    /* selectedBeers = []; */
-    //selectedBeersAmount = [];
   });
 }
+

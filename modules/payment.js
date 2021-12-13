@@ -1,12 +1,11 @@
 import { processOrder } from "./process-payment";
 import { calculatePrice } from "./calculate-price-payment";
-import { formattedCreditCardInput, formattedExpiry, formattedCVW } from "./formatted-inputs";
 
-let isDisplayedBefore = {};
-
-export function goToPayment(barInfo, selected) {
+export function goToPayment(selected) {
   document.querySelector(".checkout-wrapper").classList.add("hidden");
   document.querySelector(".payment-wrapper").classList.remove("hidden");
+
+  let isDisplayedBefore = {};
 
   selected.forEach((e) => {
     if (e.name in isDisplayedBefore) {
@@ -25,20 +24,16 @@ export function goToPayment(barInfo, selected) {
     copy.querySelector("[data-order=img] img").src = e.label;
     copy.querySelector("[data-order=amount]").textContent = `x ${e.amount}`;
     document.querySelector("[data-order=total]").textContent = `Total: ${calculatePrice(selected)} DKK`;
-
     document.querySelector("#orders-list").appendChild(copy);
   });
-
-  //validation checkbox
- 
 
   document.querySelector("#payment_back").addEventListener("click", goBackToCheckOut);
 
   document.querySelector("form").addEventListener("submit", (e) => {
     e.preventDefault();
-    document.querySelector('input[id="accept_terms"]').setCustomValidity("To proceed with your order, please, accept the terms and conditions");
+   // tried custom validity for the checkbox, but it doesn't work after submit event listener
     if (document.querySelector('input[id="accept_terms"]').checked) {
-      processOrder(selected, barInfo);
+      processOrder(selected);
     }
   });
 }

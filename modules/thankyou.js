@@ -4,6 +4,9 @@ export function displayOrderNumbers(myorder, info) {
   const serving = info.serving;
   document.querySelector(".payment-wrapper").classList.add("hidden");
   document.querySelector(".thank-you-wrapper").classList.remove("hidden");
+  document.querySelector("#order_again").addEventListener("click", ()=>{
+     window.location.reload();
+  } )
 
   console.log("my order", myorder, "orders", info);
 
@@ -106,4 +109,4 @@ function orderFound(filteredQueueFormated, myOrder) {
   });
 }
 
-/*; */
+
